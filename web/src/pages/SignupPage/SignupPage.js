@@ -7,17 +7,24 @@ import { Link, navigate, routes } from '@redwoodjs/router'
 const SignupPage = () => {
   const { client } = useAuth()
   const [error, setError] = React.useState(null)
+  const [complete, setComplete] = React.useState(false)
   const onSubmit = (data) => {
     setError(null)
     client
       .signup(data.email, data.password)
-      .then(() => navigate(routes.members()))
+      .then(() => setComplete(true))
       .catch((error) => setError(error.message))
   }
 
   return (
     <GlobalLayout>
       <h1>Sign Up</h1>
+      {complete ? (
+        <p>
+          A confirmation message was sent to your email, click the link there to
+          continue.
+        </p>
+      ) : (
         <>
           <Form onSubmit={onSubmit}>
             {error ? <p>{error}</p> : null}
@@ -29,6 +36,7 @@ const SignupPage = () => {
             Already a member? <Link to={routes.signin()}>Sign in</Link> instead
           </p>
         </>
+      )}
     </GlobalLayout>
   )
 }
