@@ -11,7 +11,7 @@ const SignupPage = () => {
   const onSubmit = (data) => {
     setError(null)
     client
-      .signup(data.email, data.password)
+      .signup(data.email, data.password, { full_name: data.name })
       .then(() => setComplete(true))
       .catch((error) => setError(error.message))
   }
@@ -28,6 +28,7 @@ const SignupPage = () => {
         <>
           <Form onSubmit={onSubmit}>
             {error ? <p>{error}</p> : null}
+            <TextField name="name" placeholder="full name" />
             <TextField name="email" placeholder="email" />
             <PasswordField name="password" placeholder="password" />
             <Submit>Sign Up</Submit>
