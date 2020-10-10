@@ -12,6 +12,8 @@ import { Router, Route, Private } from '@redwoodjs/router'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/password-reset" page={PasswordResetPage} name="passwordReset" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/confirm-email" page={ConfirmEmailPage} name="confirmEmail" />
       <Private unauthenticated="signin">
         <Route path="/members" page={MembersPage} name="members" />

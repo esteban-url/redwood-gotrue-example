@@ -6,6 +6,10 @@ const HASH_REDIRECTS = [
     hash: 'confirmation_token',
     route: (token) => routes.confirmEmail({ token }),
   },
+  {
+    hash: 'recovery_token',
+    route: (token) => routes.passwordReset({ token }),
+  },
 ]
 
 export const useHashRedirects = () => {
